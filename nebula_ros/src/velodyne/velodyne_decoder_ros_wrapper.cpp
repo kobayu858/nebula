@@ -279,3 +279,16 @@ Status VelodyneDriverRosWrapper::GetParameters(
 RCLCPP_COMPONENTS_REGISTER_NODE(VelodyneDriverRosWrapper)
 }  // namespace ros
 }  // namespace nebula
+
+#include "static_callback_isolated_executor.hpp"
+int main(int argc, char * argv[]) {
+  rclcpp::init(argc, argv);
+  auto node = std::make_shared<nebula::ros::VelodyneDriverRosWrapper>(rclcpp::NodeOptions());
+  auto executor = std::make_shared<StaticCallbackIsolatedExecutor>();
+
+  executor->add_node(node);
+  executor->spin();
+
+  rclcpp::shutdown();
+  return 0;
+}
