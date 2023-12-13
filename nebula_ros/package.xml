@@ -31,4 +31,7 @@
   <export>
     <build_type>ament_cmake</build_type>
   </export>
+
+  <depend>rclcpp_component_container_callback_isolated</depend>
+
 </package>
